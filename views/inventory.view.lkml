@@ -16,7 +16,10 @@ view: inventory {
     type: number
     sql: ${TABLE}."INV_QUANTITY_ON_HAND" ;;
   }
-
+ measure: Total_Inv_qty_hand {
+   type: sum
+   sql: ${inv_quantity_on_hand} ;;
+ }
   dimension: inv_warehouse_sk {
     type: number
     sql: ${TABLE}."INV_WAREHOUSE_SK" ;;

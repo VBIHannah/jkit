@@ -122,4 +122,15 @@ view: store_sales {
     type: count
     drill_fields: []
   }
+
+  measure: max_net_sale {
+    type: max
+    sql: ${ss_net_profit} ;;
+
+  }
+
+  measure: Total_month_profit {
+    type: sum
+    sql: ${ss_net_profit} ;;
+  }
 }

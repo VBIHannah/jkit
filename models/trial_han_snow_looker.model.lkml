@@ -32,7 +32,13 @@ explore: household_demographics {}
 
 explore: income_band {}
 
-explore: inventory {}
+explore: inventory {
+   join: date_dim {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${date_dim.d_date_sk} =${inventory.inv_date_sk} ;;
+  }
+}
 
 explore: item {}
 
@@ -126,6 +132,18 @@ explore: web_sales {
     type: inner
     relationship: many_to_one
     sql_on: ${web_sales.ws_web_site_sk} =  ${web_site.web_site_sk};;
+  }
+
+  join: date_dim {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${date_dim.d_date_sk} = ${web_sales.ws_ship_date_sk} ;;
+  }
+
+  join: customer {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${customer.c_customer_sk}=${web_sales.ws_bill_customer_sk} ;;
   }
 }
 

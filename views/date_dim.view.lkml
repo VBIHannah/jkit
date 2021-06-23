@@ -147,9 +147,19 @@ view: date_dim {
     sql: ${TABLE}."D_WEEKEND" ;;
   }
 
-  dimension: d_year_1 {
+  dimension: dyear {
     type: number
     sql: ${TABLE}."D_YEAR" ;;
+  }
+
+  dimension: dMonth_Year {
+    type: number
+    sql:(DATE_PART('YEAR',"DATE_DIM"."D_DATE") * 100) + DATE_PART('MONTH',"DATE_DIM"."D_DATE") ;;
+  }
+  dimension: F_monthYear {
+    type: string
+    sql: ${dMonth_Year} ;;
+    suggest_persist_for: "2 minutes"
   }
 
   measure: count {

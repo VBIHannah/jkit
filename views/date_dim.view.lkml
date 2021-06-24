@@ -162,8 +162,16 @@ view: date_dim {
     suggest_persist_for: "2 minutes"
   }
 
+  parameter: datefilter {
+    type: date
+  }
   measure: count {
     type: count
     drill_fields: [d_quarter_name, d_day_name]
+  }
+#Custom Dimention
+  dimension: selection {
+    type: string
+    sql: 'Customer Sales Details';;
   }
 }

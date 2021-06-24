@@ -133,4 +133,5 @@ view: store_sales {
     type: sum
     sql: ${ss_net_profit} ;;
   }
+
 }

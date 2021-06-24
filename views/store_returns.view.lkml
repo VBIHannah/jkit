@@ -106,4 +106,22 @@ view: store_returns {
     type: count
     drill_fields: []
   }
+#Custom dimension
+  dimension: is_less30{
+    type: yesno
+    sql:
+      ${date_dim.d_date} >= to_date(date_dim.datefilter)
+      and
+      ${date_dim.d_date} <= to_date(date_dim.datefilter) + 30 ;;
+  }
+  measure: 30Days {
+    type:sum
+    sql: ${sr_return_quantity} ;;
+    filters: {
+      field: is_less30
+      value: "yes"
+    }
+  }
+
+
 }
